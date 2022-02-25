@@ -1,26 +1,26 @@
 <?php 
 if(isset($_POST['submitForm'])){
-    $outputNumber=0;
-    $inputNumber=(float)$_POST['inputnumber'];
-    $inputFormat=$_POST['inputformat'];
-    $outputFormat=$_POST['outputformat'];
+  $outputNumber=0;
+  $inputNumber=(float)$_POST['inputnumber']; //take inputvalue from the form 
+  $inputFormat=$_POST['inputformat'];        //take inputformat from the form example meter,kilometer etc
+  $outputFormat=$_POST['outputformat'];      //take outputformat from the form example meter,kilometer etc
     
     switch($inputFormat){
-        case "celsius" :
+        case "celsius" : // celsius to fahrenheit,kelvin
             switch($outputFormat){
                 case "celsius" :$outputNumber=$inputNumber; break;
                 case "fahrenheit" :$outputNumber=(float)(($inputNumber * 9 / 5) + 32); break;
                 case "kelvin" :$outputNumber=(float)(($inputNumber+273.15)); break;
             }
         break;
-        case "kelvin" :
+        case "kelvin" : // kelvin to any temparature measurment
             switch($outputFormat){
                 case "celsius" :$outputNumber=(($inputNumber)-273.15); break;
                 case "fahrenheit" :$outputNumber=((float)(($inputNumber-273.15)*(9/5))+32); break;
                 case "kelvin" :$outputNumber=$inputNumber; break;
             }
         break;
-        case "fahrenheit" :
+        case "fahrenheit" ://fahrenheit to any temprature measurement
             switch($outputFormat){
                 case "celsius" :$outputNumber=($inputNumber-32)*(5/9); break;
                 case "fahrenheit" :$outputNumber=$inputNumber; break;
@@ -49,6 +49,12 @@ if(isset($_POST['submitForm'])){
       </div>
     </nav>
     <style>
+        body{
+        background-color: #e3f2fd;
+      }
+      span{
+        color: green;
+      }
       .vk{
         margin-top: 120px;
         margin-left: -100px;
@@ -56,47 +62,34 @@ if(isset($_POST['submitForm'])){
       .vk1{
         margin-left: 90px;
       }
+      .vk2{
+        margin-top: 60px;
+        border: 1px solid black;
+        height: 70%;
+        background-color: grey;
+        box-shadow: 20px 20px 50px grey;
+      }
     </style>
 </head>
 <body>
     
-    <!-- <ul class="nav justify-content-center">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="lengthc.php">Length</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="temparature.php">Temperature</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="area.php">Area</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">Volume</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">Weight</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">Time</a>
-        </li>
-      </ul> -->
       <div class="btn-group d-flex justify-content-center">
-        <a href="lengthc.php" class="btn btn-primary" aria-current="page">Length</a>
-        <a href="temparature.php" class="btn btn-secondary">Temparature</a>
-        <a href="area.php" class="btn btn-primary">Area</a>
-        <a href="volume.php" class="btn btn-secondary">Volume</a>
-        <a href="weight.php" class="btn btn-primary">Weight</a>
-        <a href="speed.php" class="btn btn-secondary">Time</a>
+        <a href="lengthc.php" class="btn btn-outline-success" aria-current="page">Length</a>
+        <a href="temparature.php" class="btn btn-primary">Temparature</a>
+        <a href="area.php" class="btn btn-outline-success">Area</a>
+        <a href="volume.php" class="btn btn-outline-success">Volume</a>
+        <a href="weight.php" class="btn btn-outline-success">Weight</a>
+        <a href="speed.php" class="btn btn-outline-success">Speed</a>
       </div>
     
   <form action="temparature.php" method="post">
-    <div class="container">
+    <div class="vk2 container">
         <div class="row g-3 align-items-center">
             <div class="col-auto">
               <label for="number" class="col-form-label">From:</label>
             </div>
             <div class="col-auto">
-              <input type="number" value="<?php if(isset($_POST['submitForm'])){ echo $inputNumber;} ?>" id="inputPassword6" class="form-control" name="inputnumber" aria-describedby="passwordHelpInline">
+              <input type="float number" value="<?php if(isset($_POST['submitForm'])){ echo $inputNumber;} ?>" id="inputPassword6" class="form-control" name="inputnumber" aria-describedby="passwordHelpInline">
             </div>
             <select class="vk" aria-label="Default select example" name="inputformat">
                 <option value="celsius">Celsius</option>
@@ -114,11 +107,9 @@ if(isset($_POST['submitForm'])){
                 <option value="kelvin" <?php if(isset($outputFormat) && $outputFormat=="kelvin") echo "selected";?>>Kelvin</option>
                 <option value="fahrenheit" <?php if(isset($outputFormat) && $outputFormat=="fahrenheit") echo "selected";?>>Fahrenheit</option>
               </select>
-      
+              <button type="submit" class="vk1 btn btn-success" value="Convert" name="submitForm">Convert</button>
             </div>
-     </div>
-     <!-- <input type="submit" name="submitForm" value="Convert!" /> -->
-     <button type="submit" class="vk1 btn btn-success" value="Convert" name="submitForm">Convert</button>
+     </div> 
   </form>
 </body>
 </html>
