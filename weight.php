@@ -231,6 +231,7 @@ if(isset($_POST['submitForm'])){
                 <option value="amu" <?php if(isset($outputFormat) && $outputFormat=="amu") echo "selected";?>>Atomic Mass Unit</option>
               </select>
               <button type="submit" class="vk1 btn btn-success" value="Convert" name="submitForm">Convert</button>
+              <button type="submit" class="vk1 btn btn-danger" value="home" name="home"><a href="index.php" class="text-white">Home</a></button>
             </div>
      </div>
   </form>
